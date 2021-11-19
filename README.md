@@ -23,6 +23,31 @@ vagrant@netology1:~$ file /bin/bash
 Используя strace выясните, где находится база данных file на основании которой она делает свои догадки.
 ```
 
+```
+vagrant@vagrant:~$ file /dev/sda
+/dev/sda: block special (8/0)
+vagrant@vagrant:~$ file /dev/sda{1,2,3}
+/dev/sda1: block special (8/1)
+/dev/sda2: block special (8/2)
+/dev/sda3: cannot open `/dev/sda3' (No such file or directory)
+vagrant@vagrant:~$ file mail
+mail: ASCII text
+vagrant@vagrant:~$ file /dev/tty{1..9}
+/dev/tty1: character special (4/1)
+/dev/tty2: character special (4/2)
+/dev/tty3: character special (4/3)
+/dev/tty4: character special (4/4)
+/dev/tty5: character special (4/5)
+/dev/tty6: character special (4/6)
+/dev/tty7: character special (4/7)
+/dev/tty8: character special (4/8)
+/dev/tty9: character special (4/9)
+vagrant@vagrant:~$ file /home/vagrant/
+/home/vagrant/: directory
+
+```
+
+
 ---
 
 ### 3. 
