@@ -76,13 +76,13 @@ openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 Зомби-процессы не занимают память, но могут привести к тому что пользователь под которым они запущены не сможет запустить новые процессы. Зомби-процессы блокируют записи в таблице процессора и при достижении лимита это может стать проблемой и даже привести к невозможности пользователя подключиться к системе. Дисковая подсистема будет также нагружена в зависимости от размера файлов зомби-процесса, как я понял(поправьте если это не так). 
 
 ---
- ### 5. В iovisor BCC есть утилита `opensnoop`:
-    ```bash
-    root@vagrant:~# dpkg -L bpfcc-tools | grep sbin/opensnoop
-    /usr/sbin/opensnoop-bpfcc
-    ```
-    На какие файлы вы увидели вызовы группы `open` за первую секунду работы утилиты? Воспользуйтесь пакетом `bpfcc-tools` для Ubuntu 20.04. Дополнительные [сведения по установке](https://github.com/iovisor/bcc/blob/master/INSTALL.md).
- 
+ ### 5. В iovisor BCC есть утилита `opensnoop`:  
+```
+root@vagrant:~# dpkg -L bpfcc-tools | grep sbin/opensnoop
+/usr/sbin/opensnoop-bpfcc
+```
+На какие файлы вы увидели вызовы группы `open` за первую секунду работы утилиты? Воспользуйтесь пакетом `bpfcc-tools` для Ubuntu 20.04. Дополнительные [сведения по установке](https://github.com/iovisor/bcc/blob/master/INSTALL.md).  
+
 ``` 
  vagrant@vagrant:/usr/sbin$ sudo ./opensnoop-bpfcc -d 1
 PID    COMM               FD ERR PATH
