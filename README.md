@@ -101,10 +101,20 @@ PID    COMM               FD ERR PATH
  
  ### 6. Какой системный вызов использует `uname -a`? Приведите цитату из man по этому системному вызову, где описывается альтернативное местоположение в `/proc`, где можно узнать версию ядра и релиз ОС.
 
-Судя по выводу strace команда uname использует системные вызовы uname и arch_prtcl.  Прошу ваш комментарий по этому вопросу. Сиистемных вызово там перечислено немало, но в основном стандартные - досту к памяти, открыть файл и т.д. 
+Судя по выводу strace команда uname использует системные вызовы uname и arch_prtcl.  Прошу ваш комментарий по этому вопросу. Сиистемных вызово там перечислено немало, но в основном стандартные - досту к памяти, открыть файл и т.д.  
 
 Из man 2 uname:
-Part of the utsname information is also accessible via /proc/sys/kernel/{ostype, hostname, osrelease, version, domainname}.
+Part of the utsname information is also accessible via /proc/sys/kernel/{ostype, hostname, osrelease, version, domainname}.  
 
+---
 
-
+ ### 7. Чем отличается последовательность команд через `;` и через `&&` в bash? Например:
+ ```
+ root@netology1:~# test -d /tmp/some_dir; echo Hi
+ Hi
+ root@netology1:~# test -d /tmp/some_dir && echo Hi
+ root@netology1:~#  
+```
+ Есть ли смысл использовать в bash `&&`, если применить `set -e`?  
+ 
+ 
