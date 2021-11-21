@@ -122,4 +122,7 @@ Part of the utsname information is also accessible via /proc/sys/kernel/{ostype,
 
 ---
 
-### 8. 
+ ### 8. Из каких опций состоит режим bash `set -euxo pipefail` и почему его хорошо было бы использовать в сценариях?  
+
+
+
