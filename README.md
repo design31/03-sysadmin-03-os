@@ -125,9 +125,10 @@ Part of the utsname information is also accessible via /proc/sys/kernel/{ostype,
  ### 8. Из каких опций состоит режим bash `set -euxo pipefail` и почему его хорошо было бы использовать в сценариях?  
 
 
- ### 9. 1. Используя `-o stat` для `ps`, определите, какой наиболее часто встречающийся статус у процессов в системе. В `man ps` ознакомьтесь (`/PROCESS STATE CODES`) что значат дополнительные к основной заглавной буквы статуса процессов. Его можно не учитывать при расчете (считать S, Ss или Ssl равнозначными).  
+ ### 9. Используя `-o stat` для `ps`, определите, какой наиболее часто встречающийся статус у процессов в системе. В `man ps` ознакомьтесь (`/PROCESS STATE CODES`) что значат дополнительные к основной заглавной буквы статуса процессов. Его можно не учитывать при расчете (считать S, Ss или Ssl равнозначными).  
 
- 
+Наиболее часто встречаются процессы с STAT равным S, Ss и Ssl (прерываемый сон), ожидающие дальнейшей команды.сигналов.
+```
 PROCESS STATE CODES
        Here are the different values that the s, stat and state output specifiers (header "STAT" or "S") will display to describe the
        state of a process:
@@ -141,4 +142,5 @@ PROCESS STATE CODES
                W    paging (not valid since the 2.6.xx kernel)
                X    dead (should never be seen)
                Z    defunct ("zombie") process, terminated but not reaped by its parent
+```
 
