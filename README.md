@@ -69,6 +69,30 @@ openat(AT_FDCWD, "/usr/share/misc/magic.mgc", O_RDONLY) = 3
 
 Сначала находим этот файл как-то так к примеру: `lsof -p PIDпроцеса приложения | grep deleted`, затем можно его обнулить скажем так: `cat /dev/null > deleted_log_file`. Конечно это не решит проблему навсегда, ведь приложение продолжает писать инфу в этот лог-файл. 
 
+Дополнение(спасибо за подсказку):   
+Делаем ping в файл ping_log, удаляем ping_log, убеждаемся что он (deleted) но размер растет:  
+```
+vagrant@vagrant:~$ ping ya.ru > ping_log & rm ping_log
+[1] 8349
+vagrant@vagrant:~$ ps
+    PID TTY          TIME CMD
+   7599 pts/1    00:00:00 bash
+   8349 pts/1    00:00:00 ping
+   8351 pts/1    00:00:00 ps
+vagrant@vagrant:~$ sudo lsof -p 8349
+COMMAND  PID    USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
+ping    8349 vagrant    1w   REG  253,0     2141 131094 /home/vagrant/ping_log (deleted)
+vagrant@vagrant:~$ sudo lsof -p 8349
+COMMAND  PID    USER   FD   TYPE DEVICE SIZE/OFF   NODE NAME
+ping    8349 vagrant    1w   REG  253,0     3401 131094 /home/vagrant/ping_log (deleted)
+```
+Ограничим размер файла ping_log 10MB:  
+```
+vagrant@vagrant:~$ sudo truncate -s 10MB /proc/8349/fd/1
+```
+Или можно очистить совсем: vagrant@vagrant:~$ sudo truncate -s 0 /proc/8349/fd/1  
+
+
 ---
 
  ### 4. Занимают ли зомби-процессы какие-то ресурсы в ОС (CPU, RAM, IO)?
